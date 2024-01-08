@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td class="text-start"> Symbol</td>
+            <td class="text-start"> Shares</td>
+            <td class="text-end"> Price </td>
+            <td class="text-end">Transacted</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for trade in trades%}
+        <tr>
+           <td class="text-start"> {{trade["symbol"]}}</td>
+           <td class="text-start"> {{trade["how_many"]}}</td>
+           <td class="text-end"> {{trade["symbol_prices"] | usd}}</td>
+           <td class="text-end"> {{trade["date"]}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

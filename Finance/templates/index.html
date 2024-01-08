@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+<thead>
+    <th class="text-start">Symbol</th>
+    <th class="text-start">Name</th>
+    <th class="text-end">Shares</th>
+    <th class="text-end">Price</th>
+    <th class="text-end">Total</th>
+</thead>
+<tbody>
+    {%for row in rows  %}
+    <tr>
+        <td class="text-start">{{row["o_symbol"]}}</td>
+        <td class="text-start">{{row["o_symbol_name"]}}</td>
+        <td class="text-end">{{row["o_stock"]}}</td>
+        <td class="text-end">{{row["current_price0"] | usd }}</td>
+        <td class="text-end">{{ row["current_price0"] *row["o_stock"] }}</td>
+
+    </tr>
+    {%endfor%}
+</tbody>
+<tfoot >
+    <tr>
+    <td class="border-0"></td>
+    <td class="border-0"></td>
+    <td class="border-0"></td>
+    <td class="border-0 fw-bold text-end ">Cash</td>
+    <td class="border-0 text-end ">{{cash | usd  }}</td>
+</tr>
+<tr>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+    <td class=" fw-bold text-end">Total</td>
+    <td class=" text-end">{{(cash + total) | usd }}</td>
+</tr>
+</tfoot>
+
+</table>
+
+{% endblock %}
